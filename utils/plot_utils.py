@@ -1,5 +1,7 @@
 import plotly.graph_objects as go
 import seaborn as sns
+import geopandas as gpd
+import matplotlib.pyplot as plt
 import pandas as pd
 
 
@@ -85,3 +87,31 @@ def create_bump_chart(year_to_data):
         margin=dict(l=50, r=100, t=50, b=50)
     )
     fig.show()
+
+
+def plot_happiness_map(df, happiness_index_column, country_column):
+    """
+    Plot a world map of the World Happiness Report by happiness score.
+
+    Args:
+    df (pandas.DataFrame): DataFrame with 'country'
+    and 'value' columns representing
+    the country name and happiness score, respectively.
+
+    Returns:
+    None
+    """
+    world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+    world = world.merge(df, how='left',
+                        left_on='name', right_on=country_column)
+    _, ax = plt.subplots(1, 1, figsize=(24, 12))
+    world.plot(column=happiness_index_column,
+               ax=ax,
+               legend=True,
+               cmap='coolwarm',
+               legend_kwds={'label': "Happiness Score",
+                            'orientation': "horizontal",
+                            'shrink': 0.5},
+               missing_kwds={"color": "darkgrey"})
+    plt.title('World Map for 2021 World Happiness Report')
+    plt.show()
