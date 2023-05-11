@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+import seaborn as sns
 import pandas as pd
 
 
@@ -33,6 +34,8 @@ def plot_happiness_score(df: pd.DataFrame, happiness_score,
 
     # Set the layout of the plot
     fig.update_layout(title=f'Top {n} happiest countries in {year}',
+                      width=800,
+                      height=500,
                       yaxis=dict(
                                 showgrid=False,
                                 showline=False,
@@ -42,5 +45,43 @@ def plot_happiness_score(df: pd.DataFrame, happiness_score,
                       xaxis_title='Happiness score',
                       yaxis_title='country',
                       margin=dict(l=50, r=100, t=50, b=50))
+    fig.show()
 
+
+def create_bump_chart(year_to_data):
+    df = pd.concat(year_to_data.values())[
+        ['Country', 'rank', 'year', 'happiness_score']]
+    df['rank'] = df['rank'].astype(int)
+    df_top20 = df[df.groupby('year')['rank'].apply(lambda x: x <= 20)]
+
+    fig = go.Figure()
+    countries = df_top20['Country'].unique()
+    colors = sns.color_palette('husl', len(countries))
+    for i, country in enumerate(countries):
+        country_df = df_top20[df_top20['Country'] == country]
+        rgb_color = tuple(int(255 * x) for x in colors[i])
+        fig.add_trace(
+            go.Scatter(
+                x=country_df['year'],
+                y=country_df['rank'],
+                mode='lines+markers',
+                name=country,
+                line=dict(color=f'rgb{rgb_color}'),
+            )
+        )
+
+    fig.update_layout(
+        yaxis=dict(
+            autorange="reversed",
+            tickmode='array',
+            tickvals=list(range(1, 21)),
+            ticktext=list(range(1, 21))
+        ),
+        width=1200,
+        height=900,
+        title="Bump Chart for Happiness Index Rank for Top 20 Countries",
+        xaxis_title="Year",
+        yaxis_title="Rank",
+        margin=dict(l=50, r=100, t=50, b=50)
+    )
     fig.show()
