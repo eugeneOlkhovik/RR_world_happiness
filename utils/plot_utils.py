@@ -1,8 +1,10 @@
 import plotly.graph_objects as go
+import plotly.express as px
 import seaborn as sns
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 
 
 def plot_happiness_score(df: pd.DataFrame, happiness_score,
@@ -115,3 +117,59 @@ def plot_happiness_map(df, happiness_index_column, country_column):
                missing_kwds={"color": "darkgrey"})
     plt.title('World Map for 2022 World Happiness Report')
     plt.show()
+
+
+def build_correlation_matrix(df):
+    """
+    Builds a correlation matrix using the Plotly library.
+
+    Parameters:
+    - df (pandas.DataFrame): The input DataFrame containing the data.
+
+    Returns:
+    - fig (plotly.graph_objects.Figure): The correlation matrix plotly figure.
+    """
+
+    # Calculate the correlation matrix
+    correlation_matrix = df.corr()
+
+    # Generate the Plotly figure
+    fig = go.Figure(data=go.Heatmap(
+        z=correlation_matrix.values,
+        x=correlation_matrix.columns,
+        y=correlation_matrix.columns,
+        colorscale="viridis",
+        zmin=-1,
+        zmax=1,
+        colorbar=dict(title="Correlation"),
+        showscale=True,
+        text=np.around(correlation_matrix.values, decimals=2),
+        hovertemplate="Correlation: %{text}<extra></extra>"
+    ))
+
+    # Add correlation values as annotations to each cell
+    for i in range(len(correlation_matrix.columns)):
+        for j in range(len(correlation_matrix.columns)):
+            fig.add_annotation(
+                x=correlation_matrix.columns[j],
+                y=correlation_matrix.columns[i],
+                text=str(np.around(correlation_matrix.values[i, j],
+                                   decimals=2)),
+                showarrow=False,
+                font=dict(color="black", size=12),
+                xref="x",
+                yref="y"
+            )
+
+    # Configure the figure layout
+    fig.update_layout(
+        title="Correlation Matrix",
+        width=700,
+        height=600,
+        xaxis_showgrid=False,
+        yaxis_showgrid=False,
+        xaxis_autorange="reversed",
+        yaxis_autorange="reversed"
+    )
+
+    return fig
