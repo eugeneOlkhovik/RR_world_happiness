@@ -113,5 +113,5 @@ def plot_happiness_map(df, happiness_index_column, country_column):
                             'orientation': "horizontal",
                             'shrink': 0.5},
                missing_kwds={"color": "darkgrey"})
-    plt.title('World Map for 2021 World Happiness Report')
+    plt.title('World Map for 2022 World Happiness Report')
     plt.show()
