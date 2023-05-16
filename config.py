@@ -28,5 +28,5 @@ year_to_country_column_name = {
     2019: "Country or region",
     2020: "Country name",
     2021: "Country name",
-    2022: "Happiness score",
+    2022: "Country",
 }
