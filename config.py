@@ -30,3 +30,25 @@ year_to_country_column_name = {
     2021: "Country name",
     2022: "Happiness score",
 }
+
+year_to_gdp_column_name = {
+    2015: 'Economy (GDP per Capita)',
+    2016: 'Economy (GDP per Capita)',
+    2017: 'Economy..GDP.per.Capita.',
+    2018: 'GDP per capita',
+    2019: 'GDP per capita',
+    2020: 'Logged GDP per capita',
+    2021: 'Logged GDP per capita',
+    2022: 'Explained by: GDP per capita',
+}
+
+year_to_life_expect_column_name = {
+    2015: 'Health (Life Expectancy)',
+    2016: 'Health (Life Expectancy)',
+    2017: 'Health..Life.Expectancy.',
+    2018: 'Healthy life expectancy',
+    2019: 'Healthy life expectancy',
+    2020: 'Explained by: Healthy life expectancy',
+    2021: 'Explained by: Healthy life expectancy',
+    2022: 'Explained by: Healthy life expectancy',
+}
