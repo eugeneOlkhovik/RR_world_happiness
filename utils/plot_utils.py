@@ -173,3 +173,45 @@ def build_correlation_matrix(df):
     )
 
     return fig
+
+
+def plot_gdp_per_capita(df, x_column, y_column):
+    """
+    This function creates a bar plot of GDP per capita using Plotly.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        The data frame containing the GDP per capita data. Each row should
+        represent a countrywith one column for the country name
+        (or year) and another for the GDP per capita.
+
+    x_column : str
+        The name of the column in df that contains the x-axis values.
+        column containing the country names or years.
+
+    y_column : str
+        The name of the column in df that contains the y-axis values.
+        Typically, this would be the column containing the GDP per capita.
+
+    Returns
+    -------
+    plotly.graph_objects.Figure
+        The figure object representing the plot.
+    """
+    fig = px.bar(df, x=x_column, y=y_column,
+                 labels={x_column: 'Country or Year',
+                         y_column: 'GDP per Capita'},
+                 title='GDP per Capita', text=y_column)
+    fig.update_traces(texttemplate='%{text:.2s}', textposition='outside')
+    fig.update_layout(
+                      width=800,
+                      height=500,
+                      yaxis=dict(
+                                showgrid=False,
+                                showline=False,
+                                showticklabels=True,
+                                categoryorder='total ascending'
+                                ),
+                      margin=dict(l=50, r=100, t=50, b=50))
+    fig.show()
