@@ -175,16 +175,17 @@ def build_correlation_matrix(df):
     return fig
 
 
-def plot_gdp_per_capita(df, x_column, y_column):
+def plot_bar_chart(df, x_column, y_column):
     """
-    This function creates a bar plot of GDP per capita using Plotly.
+    This function creates a bar plot
+    of any parameter included in happiness index
 
     Parameters
     ----------
     df : pandas.DataFrame
         The data frame containing the GDP per capita data. Each row should
         represent a countrywith one column for the country name
-        (or year) and another for the GDP per capita.
+        (or year) and another parameter column
 
     x_column : str
         The name of the column in df that contains the x-axis values.
@@ -192,7 +193,7 @@ def plot_gdp_per_capita(df, x_column, y_column):
 
     y_column : str
         The name of the column in df that contains the y-axis values.
-        Typically, this would be the column containing the GDP per capita.
+        Typically, this would be the column containing a parameter
 
     Returns
     -------
@@ -200,10 +201,10 @@ def plot_gdp_per_capita(df, x_column, y_column):
         The figure object representing the plot.
     """
     fig = px.bar(df, x=x_column, y=y_column,
-                 labels={x_column: 'Country or Year',
-                         y_column: 'GDP per Capita'},
-                 title='GDP per Capita', text=y_column)
-    fig.update_traces(texttemplate='%{text:.2s}', textposition='outside')
+                 labels={x_column: 'Country',
+                         y_column: f'{y_column}'},
+                 title=f'{y_column}', text=y_column)
+    fig.update_traces(texttemplate='%{text:.4s}', textposition='outside')
     fig.update_layout(
                       width=800,
                       height=500,
