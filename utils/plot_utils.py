@@ -91,7 +91,7 @@ def create_bump_chart(year_to_data):
     fig.show()
 
 
-def plot_happiness_map(df, happiness_index_column, country_column):
+def plot_happiness_map(df, happiness_index_column, country_column, year):
     """
     Plot a world map of the World Happiness Report by happiness score.
 
@@ -99,7 +99,7 @@ def plot_happiness_map(df, happiness_index_column, country_column):
     df (pandas.DataFrame): DataFrame with 'country'
     and 'value' columns representing
     the country name and happiness score, respectively.
-
+    year (int): Parameter to provide corresponding year of plotted data
     Returns:
     None
     """
@@ -115,7 +115,7 @@ def plot_happiness_map(df, happiness_index_column, country_column):
                             'orientation': "horizontal",
                             'shrink': 0.5},
                missing_kwds={"color": "darkgrey"})
-    plt.title('World Map for 2022 World Happiness Report')
+    plt.title(f'World Map for {year} World Happiness Report')
     plt.show()
 
 
