@@ -58,3 +58,11 @@ col_name_to_shorter_col_name = {
     'Explained by: Generosity': 'genorosity',
     'Explained by: Perceptions of corruption': 'perceptions_corruption'
 }
+
+# list for numerical variables
+numerical_cols = ['happiness_score', 'Whisker-high', 'Whisker-low', 'Dystopia (1.83) + residual',
+                  'gdp_per_capita', 'social_support', 'life_expectancy', 'freedom', 'genorosity',
+                  'perceptions_corruption']
+
+#list for independent variables
+independent_variables = ['gdp_per_capita', 'social_support', 'life_expectancy', 'freedom', 'genorosity', 'perceptions_corruption', 'global_north']
