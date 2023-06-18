@@ -30,3 +30,31 @@ year_to_country_column_name = {
     2021: "Country name",
     2022: "Country",
 }
+
+# Define the list of countries in the Global North
+north_countries = ['United States', 'Canada'
+                   'Austria', 'Belgium', 'Bulgaria',
+                   'Croatia', 'Republic of Cyprus'
+                   'Czech Republic', 'Denmark',
+                   'Estonia', 'Finland', 'France'
+                   'Germany', 'Greece', 'Hungary',
+                   'Ireland', 'Italy', 'Latvia'
+                   'Lithuania', 'Luxembourg',
+                   'Malta', 'Netherlands', 'Poland'
+                   'Slovakia', 'Slovenia', 'Spain'
+                   'Sweden', 'United Kingdom',
+                   'Portugal', 'Romania',
+                   'Australia', 'New Zealand'
+                   'Japan', 'South Korea']
+
+# dict fior mapping column names
+col_name_to_shorter_col_name = {
+    'Country': 'country',
+    'Happiness score': 'happiness_score',
+    'Explained by: GDP per capita': 'gdp_per_capita',
+    'Explained by: Social support': 'social_support',
+    'Explained by: Healthy life expectancy': 'life_expectancy',
+    'Explained by: Freedom to make life choices': 'freedom',
+    'Explained by: Generosity': 'genorosity',
+    'Explained by: Perceptions of corruption': 'perceptions_corruption'
+}

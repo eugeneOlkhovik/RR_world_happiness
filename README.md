@@ -13,6 +13,7 @@ The dataset is sourced from the Gallup World Survey, where respondents rate thei
 This project aims to explore the relationships between happiness and various factors, shedding light on how economic, social, and individual aspects impact happiness levels across countries. It can be used for further analysis and research in fields such as economics, psychology, public policy, and more.
 
 Global Happiness Index: Mapping Joy and Well-being Across Nations for 2022
+
 ![map_2022](https://github.com/eugeneOlkhovik/RR_world_happiness/assets/17147763/91ad348b-6fb6-42e8-a494-e0284fc5372c)
 
 ### Dataset details
